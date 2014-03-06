@@ -1,0 +1,74 @@
+<!doctype html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <title>显示一本BOOK</title>
+</head>
+<body>
+
+
+<div ng-controller="BookController">
+    Id: <span ng-bind="book.id"></span>
+    <br/>
+    Name:<input type="text" ng-model="book.name" />
+    <br/>
+    Author: <input type="text" ng-model="book.author" />
+
+
+    <h3>相关书店</h3>
+    <label>查询书店</label><input type="text" ng-model="searchText">
+    <ul>
+        <!-- 查询属性 -->
+        <li ng-repeat="b in book.stores | filter:searchText">
+            id : {{b.id}}
+            名称 : {{b.name}}
+            价格 : {{b.quantity}}
+        </li>
+    </ul>
+
+
+
+    <div>
+
+
+
+    </div>
+
+</div>
+
+
+</body>
+
+<!--angular.js 放在底部 防止阻塞html加载-->
+<script  type="text/javascript"  src="js/angular.js"></script>
+
+<script type="text/javascript">
+
+     angular.module("app",{}).controller("BookController",['$scope',function($scope){
+
+         $scope.book = {
+             id: 1,
+             name: 'Harry Potter',
+             author: 'J. K. Rowling',
+             stores: [
+                 { id: 1, name: 'Barnes & Noble', quantity: 3},
+                 { id: 2, name: 'Waterstones', quantity: 2},
+                 { id: 3, name: 'Book Depository', quantity: 5}
+             ]
+         };
+
+//             //从后台读取数据(需要服务器支持)
+//             $http.get('ourserver/books/' + bookId).success(function(bookData) {
+//                 $scope.book = bookData;
+//             });
+
+
+
+     }]);
+
+
+
+
+</script>
+
+</html>

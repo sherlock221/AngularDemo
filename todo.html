@@ -1,0 +1,36 @@
+<!doctype html>
+<html ng-app>
+<head>
+    <meta charset="utf-8"/>
+    <script src="js/angular.js" ></script>
+    <script src="js/todo.js"></script>
+    <link rel="stylesheet" href="css/todo.css">
+</head>
+<body>
+<h2>Todo</h2>
+
+<!-- todo控制器  -->
+<div ng-controller="TodoCtrl">
+
+    <span>{{remaining()}} / {{todos.length}} 个</span>
+
+    [ <a href="" ng-click="archive()">清空购物车</a> ]
+
+    <ul class="unstyled">
+        <li ng-repeat="todo in todos">
+            <input type="checkbox" ng-model="todo.done">
+            <span class="done-{{todo.done}}">{{todo.text}}</span>
+        </li>
+    </ul>
+
+
+    <form ng-submit="addTodo()">
+        <input type="text" ng-model="todoText"  size="30"
+               placeholder="add new todo here">
+        <input class="btn-primary" type="submit" value="add">
+    </form>
+
+
+</div>
+</body>
+</html>
